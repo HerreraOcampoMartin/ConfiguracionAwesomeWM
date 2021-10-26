@@ -1,26 +1,30 @@
 local awful = require("awful")
 local wibox = require("wibox")
 local os = require("os")
+local gears = require("gears")
 local VARS = require("GetGlobalVars")
 local watch = awful.widget.watch
 
-local bluetoothWidgetCreator = function()
+local bluetoothWidgetCreator = function(bg_colour)
 
-    local widget = wibox.widget.imagebox(VARS.icons_dir .. "bluetooth/bluetooth-off.svg")
+    local widget = wibox.widget.imagebox(VARS.icons_dir .. "widgetsIcons/bluetooth/bluetooth-off.svg")
 
     widget:buttons(
-        {awful.button({ }, 1, function() awful.spawn(VARS.bluetoothManager) end)}
+		gears.table.join(
+			awful.button({ }, 1, function() awful.spawn(VARS.bluetoothManager) end)
+		)
     )
 
-    watch("rfkill list bluetooth", 5, function(_, stdout) 
-        if stdout:match("Soft blocked: yes") then
-            widget:set_image(VARS.icons_dir .. "bluetooth/bluetooth-off.svg")
+    watch("bluetooth", 5, function(_, stdout) 
+        if stdout:match("bluetooth = off") then
+            widget:set_image(VARS.icons_dir .. "widgetsIcons/bluetooth/bluetooth-off.svg")
         else
-            widget:set_image(VARS.icons_dir .. "bluetooth/bluetooth.svg")
+		    widget:set_image(VARS.icons_dir .. "widgetsIcons/bluetooth/bluetooth.svg")
         end
     end, widget)
 
-    return wibox.container.margin(widget, VARS.margin, VARS.margin, VARS.margin, VARS.margin)
+    local margin = wibox.container.margin(widget, VARS.margin, VARS.margin, VARS.margin, VARS.margin)
+    return wibox.container.background(margin, bg_colour)
 
 end
 

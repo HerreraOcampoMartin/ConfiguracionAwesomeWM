@@ -1,0 +1,15 @@
+/sbin/iw
+bluetooth
+hcitool dev
+awk
+amixer
+setxkbmap
+iproute2
+rofi
+inter-font
+nitrogen
+lxpolkit
+picom
+
+redshift
+xfce4-power-manager

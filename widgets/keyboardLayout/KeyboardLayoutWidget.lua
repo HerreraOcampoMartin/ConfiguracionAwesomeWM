@@ -4,11 +4,11 @@ local gears = require("gears")
 local os = require("os")
 local VARS = require("GetGlobalVars")
 
-local keyboardLayoutWidgetCreator = function()
+local keyboardLayoutWidgetCreator = function(bg_colour)
 
     local languages = {"es", "us"} 
     local widget = wibox.widget.textbox(languages[1])
-    widget.font = "Ubuntu Mono 10"
+    widget.font = VARS.font
     i = 1
     languages_size = 0
     for _ in pairs(languages) do languages_size = languages_size + 1 end
@@ -29,7 +29,8 @@ local keyboardLayoutWidgetCreator = function()
         )
     )
 
-    return wibox.container.margin(widget, VARS.margin, VARS.margin, VARS.margin, VARS.margin)
+    local margin = wibox.container.margin(widget, VARS.margin, VARS.margin, VARS.margin, VARS.margin)
+    return wibox.container.background(margin, bg_colour)
 
 end
 

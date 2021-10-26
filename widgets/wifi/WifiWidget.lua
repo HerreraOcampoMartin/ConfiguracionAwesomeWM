@@ -11,9 +11,9 @@ local interfaces = {
 	lan_interface = 'enp0s25'
 }
 
-local network_mode = nil
+local network_mode = nil 
 
-local return_button = function()
+local return_button = function(bg_colour)
 
 	local update_notify_no_access = true
 	local notify_no_access_quota = 0
@@ -22,14 +22,13 @@ local return_button = function()
 	local reconnect_startup = true
 	local notify_new_wifi_conn = false
 
-	local widget = wibox.widget.imagebox(VARS.icons_dir .. 'wifi/wifi-strength-off' .. '.svg')
+	local widget = wibox.widget.imagebox(VARS.icons_dir .. "widgetsIcons/wifi/wifi-strength-off.svg")
 
 	
 	widget:buttons(
-		{awful.button({},1,
-            function()
-                awful.spawn(VARS.networkManager)
-            end)}
+		gears.table.join(
+			awful.button({}, 1, function() awful.spawn(VARS.networkManager) end)
+		)
 	)
 
 	local check_internet_health = [=[
@@ -79,7 +78,7 @@ local return_button = function()
 			local message = 'You are now connected to <b>\"' .. essid .. '\"</b>'
 			local title = 'Connection Established'
 			local app_name = 'System Notification'
-			local icon = VARS.icons_dir .. 'wifi/wifi.svg'
+			local icon = VARS.icons_dir .. 'widgetsIcons/wifi/wifi.svg'
 			network_notify(message, title, app_name, icon)
 		end
 
@@ -87,7 +86,7 @@ local return_button = function()
 		local update_wireless_data = function(strength, healthy)
 			awful.spawn.easy_async_with_shell(
 				[[
-				iw dev ]] .. interfaces.wlan_interface .. [[ link
+				/sbin/iw dev ]] .. interfaces.wlan_interface .. [[ link
 				]],
 				function(stdout)
 					local essid = stdout:match('SSID: (.-)\n') or 'N/A'
@@ -115,7 +114,7 @@ local return_button = function()
 						widget_icon_name = widget_icon_name .. '-' .. tostring(strength) .. '-alert'
 						update_wireless_data(wifi_strength_rounded, false)
 					end
-					widget:set_image(VARS.icons_dir .. "wifi/" .. widget_icon_name .. '.svg')
+					widget:set_image(VARS.icons_dir .. "widgetsIcons/wifi/" .. widget_icon_name .. '.svg')
 				end
 			)
 		end
@@ -149,7 +148,7 @@ local return_button = function()
 			local message = 'Connected to internet with <b>\"' .. interfaces.lan_interface .. '\"</b>'
 			local title = 'Connection Established'
 			local app_name = 'System Notification'
-			local icon = VARS.icons_dir .. 'wifi/wired.svg'
+			local icon = VARS.icons_dir .. 'widgetsIcons/wifi/wired.svg'
 			network_notify(message, title, app_name, icon)
 		end
 
@@ -169,7 +168,7 @@ local return_button = function()
 					end
 					update_reconnect_startup(false)
 				end
-				widget:set_image(VARS.icons_dir .. "wifi/" .. widget_icon_name .. '.svg')
+				widget:set_image(VARS.icons_dir .. "widgetsIcons/wifi/" .. widget_icon_name .. '.svg')
 			end
 		)
 	end
@@ -180,7 +179,7 @@ local return_button = function()
 			local message = 'Wi-Fi network has been disconnected'
 			local title = 'Connection Disconnected'
 			local app_name = 'System Notification'
-			local icon = VARS.icons_dir .. 'wifi/wifi-strength-off.svg'
+			local icon = VARS.icons_dir .. 'widgetsIcons/wifi/wifi-strength-off.svg'
 			network_notify(message, title, app_name, icon)
 		end
 
@@ -188,7 +187,7 @@ local return_button = function()
 			local message = 'Ethernet network has been disconnected'
 			local title = 'Connection Disconnected'
 			local app_name = 'System Notification'
-			local icon = VARS.icons_dir .. 'wifi/wired-off.svg'
+			local icon = VARS.icons_dir .. 'widgetsIcons/wifi/wired-off.svg'
 			network_notify(message, title, app_name, icon)
 		end
 
@@ -207,7 +206,7 @@ local return_button = function()
 				notify_wired_disconnected()
 			end
 		end
-		widget:set_image(VARS.icons_dir .. "wifi/" .. widget_icon_name .. '.svg')
+		widget:set_image(VARS.icons_dir .. "widgetsIcons/wifi/" .. widget_icon_name .. '.svg')
 	end
 
 	local check_network_mode = function()
@@ -264,7 +263,7 @@ local return_button = function()
 					update_disconnected()
 				elseif stdout:match('wired') then
 					update_wired()
-        else
+		        else
 					update_wireless()
 				end
 			end
@@ -280,7 +279,8 @@ local return_button = function()
 		end	
 	}
 
-	return wibox.container.margin(widget, VARS.margin, VARS.margin, VARS.margin, VARS.margin)
+	local margin = wibox.container.margin(widget, VARS.margin, VARS.margin, VARS.margin, VARS.margin)
+    return wibox.container.background(margin, bg_colour)
 end
 
 return return_button

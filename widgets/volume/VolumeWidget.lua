@@ -14,7 +14,7 @@ local function createVolumeWidget()
         handle_color="#ffffff",
         handle_shape=gears.shape.losange,
         forced_width=100,
-        minimum=1,
+        minimum=0,
         maximum=100,
         widget = wibox.widget.slider
     }

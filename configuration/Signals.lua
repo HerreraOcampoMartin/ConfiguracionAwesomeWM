@@ -2,6 +2,7 @@ local gears = require("gears")
 local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
+local VARS = require("GetGlobalVars")
 require("modules.TitlebarFactory")
 
 client.connect_signal("manage", function (c)
@@ -30,5 +31,11 @@ client.connect_signal("property::floating", function(c)
     end
 end)
 
---client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
---client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("focus", function(c) 
+	c.border_width = VARS.borderWidth
+	c.border_color = VARS.focusedBorder
+end)
+client.connect_signal("unfocus", function(c) 
+	c.border_width = VARS.borderWidth
+	c.border_color = VARS.unfocusedBorder
+end)

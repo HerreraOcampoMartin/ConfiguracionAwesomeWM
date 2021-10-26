@@ -22,7 +22,7 @@ awful.screen.connect_for_each_screen(require("layout.CreateWidgets"))
 
 -- SET AWESOME WM THEME
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-beautiful.useless_gap = 5
+beautiful.useless_gap = VARS.gap
 
 
 -- Menubar configuration
@@ -30,5 +30,6 @@ menubar.utils.terminal = VARS.terminal -- Set the terminal for applications that
 
 -- AUTOSTART APPLICATIONS
 awful.spawn.with_shell("nitrogen --restore")
-awful.spawn.with_shell("nm-applet")
-awful.spawn.with_shell("blueman-applet")
+awful.spawn.with_shell("lxpolkit")
+awful.spawn.with_shell("picom -f --fade-delta=2")
+--awful.spawn.with_shell("picom -f --fade-delta=2 --shadow --shadow-opacity=0.9")
