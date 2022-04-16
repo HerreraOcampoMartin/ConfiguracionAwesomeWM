@@ -1,0 +1,28 @@
+Volume icon
+Auto update volume
+Random color schemes
+New Rofi theme
+Window titlebars
+Floating windows (image viewers)
+Add calendar
+Add "%" to battery
+Update battery icon when charging
+Add night light
+Hover effects
+Open default application in tag
+Fix window resize
+Notifications panel
+Effects for buttons (hover, leave, click)
+Fix wifi
+Fix tags (remove "")
+Settings panel (volume, brightness, weather, keyboard layout)
+Fix maximized windows
+Fix XF86AudioPause
+Usable cursor
+Fix layout icon when restart
+Fix loading cursor in desktop
+Hacer fork de blueman manager
+
+Reduce lines in:
+	Wifi widget
+	Power manager

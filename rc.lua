@@ -18,7 +18,9 @@ require("controls.RootKeys")
 require("controls.RootButtons")
 require("layout.SetWindowsLayouts")
 require("layout.CreateMenu")
+require("modules.PowerManager")
 awful.screen.connect_for_each_screen(require("layout.CreateWidgets"))
+awful.screen.focused():emit_signal("request::desktop_decoration")
 
 -- SET AWESOME WM THEME
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
@@ -29,7 +31,11 @@ beautiful.useless_gap = VARS.gap
 menubar.utils.terminal = VARS.terminal -- Set the terminal for applications that require it
 
 -- AUTOSTART APPLICATIONS
+awful.spawn.with_shell("killall volumeicon")
 awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("lxpolkit")
-awful.spawn.with_shell("picom -f --fade-delta=2")
+awful.spawn.with_shell("compton -m 1 -i 0.9 --focus-exclude 'window_type != \"normal\"'")
+awful.spawn.with_shell("nm-applet")
+awful.spawn.with_shell("volumeicon")
+--awful.spawn.with_shell("compton -c -o 0.8 -m 1 -i 0.7 --focus-exclude 'name *?= \"rofi\"' --shadow-exclude 'window_type != \"normal\"'")
 --awful.spawn.with_shell("picom -f --fade-delta=2 --shadow --shadow-opacity=0.9")

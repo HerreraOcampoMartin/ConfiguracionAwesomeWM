@@ -32,9 +32,6 @@ local tasklistWidgetCreator = function(s)
 		    font = VARS.font,
 			bg_focus = VARS.primaryColour,
 			shape  = gears.shape.rectangle,
-			shape_border_width = 2,
-			shape_border_color = VARS.secondaryColour,
-			shape_border_color_focus = VARS.primaryColour
 		},
 		layout   = {
 	        spacing = 5,

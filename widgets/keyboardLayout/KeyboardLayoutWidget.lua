@@ -25,6 +25,9 @@ local keyboardLayoutWidgetCreator = function(bg_colour)
                 end
                 widget.text = tostring(languages[i])
                 os.execute('setxkbmap ' .. tostring(languages[i]))
+				if tostring(languages[i]) == "dk" then
+					os.execute('setxkbmap -layout es -variant dvorak')
+				end
             end)
         )
     )

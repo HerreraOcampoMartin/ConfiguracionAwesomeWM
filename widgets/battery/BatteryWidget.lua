@@ -27,7 +27,7 @@ local function createBatteryWidget(bg_colour)
         if stdout:match("Discharging") then
             widget:set_image(VARS.icons_dir .. "widgetsIcons/battery/battery-alert-red.svg")
         else
-            widget:set_image(VARS.icons_dir .. "battery/battery-fully-charged.svg")
+            widget:set_image(VARS.icons_dir .. "widgetsIcons/battery/battery-fully-charged.svg")
         end
     end, widget)
 

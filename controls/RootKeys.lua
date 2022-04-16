@@ -18,20 +18,18 @@ globalkeys = gears.table.join(
     awful.key({ VARS.modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
 
-    awful.key({ VARS.modkey,           }, "Tab",
-        function ()
-            awful.client.focus.byidx( 1)
-        end,
-        {description = "focus next by index", group = "client"}
-    ),
+	awful.key({ VARS.modkey }, "b",		function() awful.util.spawn("blueman-manager") end,
+			  { description = "Launch bluetooth manager", group="client"}),
+    
+	awful.key({ 			}, "XF86AudioPlay", function(c) awful.util.spawn("playerctl play-pause") end,
+	{ description="play/pause media", group="client" }),
 
-    awful.key({ VARS.modkey, "Shift"}, "Tab",
-        function ()
-            awful.client.focus.byidx(-1)
-        end,
-        {description = "focus previous by index", group = "client"}
-    ),
-
+	awful.key({				 }, "Print",
+		function (c) 
+			awful.util.spawn(VARS.screenshot)
+		end,
+		{ description = "screenshot", group = "client" }
+	),
 
     -- Layout manipulation
     awful.key({ VARS.modkey, "Shift"   }, "Right", function () awful.client.swap.byidx(  1)    end,
@@ -56,32 +54,8 @@ globalkeys = gears.table.join(
     awful.key({ VARS.modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
 
-    awful.key({ VARS.modkey, "Shift"   }, "q", awesome.quit,
+    awful.key({ VARS.modkey, "Shift"   }, "q", function() awesome.emit_signal("module::exit_screen:show") end,
               {description = "quit awesome", group = "awesome"}),
-
-    awful.key({ VARS.modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
-              {description = "increase master width factor", group = "layout"}),
-
-    awful.key({ VARS.modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
-              {description = "decrease master width factor", group = "layout"}),
-
-    awful.key({ VARS.modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
-              {description = "increase the number of master clients", group = "layout"}),
-
-    awful.key({ VARS.modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
-              {description = "decrease the number of master clients", group = "layout"}),
-
-    awful.key({ VARS.modkey, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)    end,
-              {description = "increase the number of columns", group = "layout"}),
-
-    awful.key({ VARS.modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
-              {description = "decrease the number of columns", group = "layout"}),
-
-    awful.key({ VARS.modkey,           }, "space", function () awful.layout.inc( 1)                end,
-              {description = "select next", group = "layout"}),
-
-    awful.key({ VARS.modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
-              {description = "select previous", group = "layout"}),
 
     awful.key({ VARS.modkey, "Shift" }, "n",
               function ()
@@ -94,6 +68,12 @@ globalkeys = gears.table.join(
                   end
               end,
               {description = "restore minimized", group = "client"}),
+
+    awful.key({ VARS.modkey,           }, "space", function () awful.layout.inc( 1)                end,
+              {description = "select next", group = "layout"}),
+
+    awful.key({ VARS.modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
+              {description = "select previous", group = "layout"}),
 
     -- Prompt
     awful.key({ VARS.modkey },            "e",     FUNCS.launchMenu,

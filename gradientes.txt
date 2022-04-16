@@ -1,0 +1,52 @@
+VARS.gradient1 = ""
+VARS.gradient2 = ""
+VARS.gradient3 = ""
+VARS.gradient4 = ""
+VARS.gradient5 = ""
+VARS.gradient6 = ""
+VARS.gradient7 = ""
+VARS.gradient8 = ""
+VARS.gradient9 = ""
+"#535D6C" -- GRIS POR DEFECTO
+
+-----------BORDO a AMARILLO-----------
+VARS.gradient1 = "#8601F2"
+VARS.gradient2 = "#8A17AC"
+VARS.gradient3 = "#8B228A"
+VARS.gradient4 = "#AF2E74"
+VARS.gradient5 = "#C3346A"
+VARS.gradient6 = "#DE5048"
+VARS.gradient7 = "#EC5F35"
+VARS.gradient8 = "#F0A230"
+VARS.gradient9 = "#F0D430"
+VARS.primaryColour = VARS.gradient3
+VARS.secondaryColour = VARS.gradient6
+VARS.focusedBorder = VARS.secondaryColour
+
+-----------NEGRO y CELESTE-------------
+VARS.gradient1 = "#201D2D"
+VARS.gradient2 = "#282536"
+VARS.gradient3 = "#353144"
+VARS.gradient4 = "#3A364A"
+VARS.gradient5 = "#433F54"
+VARS.gradient6 = "#4B475D"
+VARS.gradient7 = "#565369"
+VARS.gradient8 = "#605C74"
+VARS.gradient9 = "#6E6A83"
+VARS.primaryColour = "#457DF7"
+VARS.secondaryColour = VARS.gradient9
+VARS.focusedBorder = VARS.primaryColour
+
+-----------VERDE a CELESTE-------------
+VARS.gradient1 = "#4CB8C4"
+VARS.gradient2 = "#49BCC0"
+VARS.gradient3 = "#47C0BD"
+VARS.gradient4 = "#45C4BA"
+VARS.gradient5 = "#44C6B8"
+VARS.gradient6 = "#42C8B6"
+VARS.gradient7 = "#40CCB3"
+VARS.gradient8 = "#3ECFB0"
+VARS.gradient9 = "#3CD3AD"
+VARS.primaryColour = VARS.gradient9
+VARS.secondaryColour = VARS.gradient1
+VARS.focusedBorder = VARS.secondaryColour

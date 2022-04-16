@@ -4,50 +4,40 @@ local VARS = {}
 VARS.browser = "firefox"
 VARS.terminal = "kitty"
 VARS.file_manager = "thunar"
-VARS.editor = "mousepad"
+VARS.editor = "neovide"
 VARS.bluetoothManager = "blueman-manager"
 VARS.networkManager = "kitty -e nmtui" 
 VARS.menu = "rofi -show drun"
+VARS.screenshot = "spectacle"
 
 --CONTROLS
 VARS.modkey = "Mod4"
 
 --SIZES
-VARS.titlebarSize = 32
+VARS.titlebarSize = 28
 VARS.margin = 5
-VARS.mainPanelSize = 32
-VARS.gap = 5
+VARS.mainPanelSize = 26
+VARS.gap = 0
 
 --DIRS
 VARS.icons_dir = os.getenv("HOME") .. "/.config/awesome/res/"
 
--- GRADIENT
-VARS.gradient1 = "#8601F2"
-VARS.gradient2 = "#8A17AC"
-VARS.gradient3 = "#8B228A"
-VARS.gradient4 = "#AF2E74"
-VARS.gradient5 = "#C3346A"
-VARS.gradient6 = "#DE5048"
-VARS.gradient7 = "#EC5F35"
-VARS.gradient8 = "#F0A230"
-VARS.gradient9 = "#F0D430"
-
-VARS.primaryColour = VARS.gradient3
-VARS.secondaryColour = VARS.gradient6
+--COLOURS
+VARS.gradientes = {"alpha", "#8601F2", "#8A17AC", "#8B228A", "#AF2E74", "#C3346A", "#DE5048", "#EC5F35", "#F0A230", "#F0D430"}
+VARS.primaryColour = VARS.gradientes[3]
+VARS.secondaryColour = VARS.gradientes[6]
+VARS.focusedBorder = VARS.primaryColour
 
 --STYLES
---VARS.primaryColour = "#0066FF" -- AZUL
---VARS.secondaryColour = "#535D6C" -- GRIS POR DEFECTO
---VARS.secondaryColour = "#8701F2" --VIOLETA
---VARS.secondaryColour = "#D50DB1" --ROSA
 
-VARS.mainPanelColour = "#000000AA"
+VARS.mainPanelColour = "#424450"
 VARS.transparent = "#00000000"
 VARS.primaryFont = "#ffffff"
 VARS.secondaryFont = "#ffffff"
-VARS.font = "Roboto 9"
+VARS.fontName = "Liberation Mono "
+VARS.font = VARS.fontName .. "11"
+VARS.giantFont = VARS.fontName .. "38"
 VARS.unfocusedBorder = VARS.transparent
-VARS.focusedBorder = VARS.secondaryColour
-VARS.borderWidth = 3
+VARS.borderWidth = 0
 
 return VARS
