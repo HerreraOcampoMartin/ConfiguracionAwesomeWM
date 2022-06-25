@@ -1,28 +1,44 @@
-Volume icon
-Auto update volume
-Random color schemes
-New Rofi theme
-Window titlebars
-Floating windows (image viewers)
-Add calendar
-Add "%" to battery
-Update battery icon when charging
-Add night light
-Hover effects
-Open default application in tag
-Fix window resize
-Notifications panel
-Effects for buttons (hover, leave, click)
-Fix wifi
-Fix tags (remove "")
-Settings panel (volume, brightness, weather, keyboard layout)
-Fix maximized windows
-Fix XF86AudioPause
-Usable cursor
-Fix layout icon when restart
-Fix loading cursor in desktop
-Hacer fork de blueman manager
+PASAR TODO A "POO"
+	- Volume
+	- Wifi
 
-Reduce lines in:
-	Wifi widget
-	Power manager
+Mejor manejo de la librería beautiful y usar "theme"
+Mover algunos programas y funciones de GetGlobalVars a GetFunctions
+Temas de color aleatorios
+Autoejecutar configuraciones al iniciar (por ejemplo, brillo)
+Barras de título
+Barra de título para todas las ventanas
+Systray Transparente
+Control de volumen (totalmente funcional, auto actualizar volumen, silenciar)
+Predefinir ventanas flotantes (visores de imágenes)
+Añadir calendario en el widget de fecha y hora
+Actualizar ícono de batería cuando esté cargando
+Añadir luz nocturna
+Abrir aplicación por defecto en etiqueta
+Arreglar Meta+Tab no cambia a ventanas raras (flotantes?, pantalla completa?)
+Arreglar redimensionar ventanas (con teclas)
+Cambiar de posicion ventana en el layout actual (mover ventana a la derecha, izquierda, etc)
+Panel de notificaciones
+Cuando pasa de Pantalla completa a flotante, solo sale de pantalla completa, no se vuelve flotante
+Efectos para botones (hover, salir, click)
+Arreglar widget de wifi
+Arreglar etiquetas (remover "")
+Cambiar cuadrado en la parte superior izquierda
+Panel de configuraciones (volumen, brillo, clima, teclado, luz nocturna, configuraciones)
+Arreglar XF86AudioPause
+Cursor usable (redimensionar, arrastrar, etc)
+Más gradientes
+Arreglar cursor cargando cuando el mouse está sobre el escritorio(?)
+Diferentes cursores en escritorio y algunas aplicaciones
+Arreglar menú clic derecho
+Compositores
+- (¿?¿?) Hacer que cuando se lanza una aplicación se abra en la etiqueta que fue llamada, no la actual 
+Integración del menú con AppImageLauncher
+Hacer fork de blueman manager
+Forma de los widgets (powerline (ambas direcciones), paralelogramo, progreso radial, cuadrado, nada, etc)
+Poweroff no funciona en otros sistemas (Void, Debian)
+
+Reducir líneas en:
+	Wifi
+	Salir
+Arreglar ícono de layout cuando inicia (de mejor forma)

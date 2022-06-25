@@ -4,18 +4,30 @@ local gears = require("gears")
 local os = require("os")
 local VARS = require("GetGlobalVars")
 
-local keyboardLayoutWidgetCreator = function(bg_colour)
+KeyboardLayoutWidget = {}
 
-    local languages = {"es", "us"} 
-    local widget = wibox.widget.textbox(languages[1])
-    widget.font = VARS.font
+function KeyboardLayoutWidget:new(bg_colour, inst)
+	inst = inst or {}
+	setmetatable(inst, self)
+	self.__index = self
+
+	self.bg_colour = bg_colour
+
+	self:create_widget()
+
+	return inst
+end
+
+function KeyboardLayoutWidget:create_widget()
+    self.widget = wibox.widget.textbox(VARS.languages[1])
+    self.widget.font = VARS.font
     i = 1
     languages_size = 0
-    for _ in pairs(languages) do languages_size = languages_size + 1 end
+    for _ in pairs(VARS.languages) do languages_size = languages_size + 1 end
 
-    os.execute('setxkbmap ' .. tostring(languages[1]))
+    os.execute('setxkbmap ' .. tostring(VARS.languages[1]))
 
-    widget:buttons(
+    self.widget:buttons(
         gears.table.join(
             awful.button({ }, 1, function() 
                 if i < languages_size then
@@ -23,18 +35,15 @@ local keyboardLayoutWidgetCreator = function(bg_colour)
                 else
                     i = 1
                 end
-                widget.text = tostring(languages[i])
-                os.execute('setxkbmap ' .. tostring(languages[i]))
-				if tostring(languages[i]) == "dk" then
-					os.execute('setxkbmap -layout es -variant dvorak')
-				end
+                self.widget.text = tostring(VARS.languages[i])
+                os.execute('setxkbmap ' .. tostring(VARS.languages[i]))
             end)
         )
     )
 
-    local margin = wibox.container.margin(widget, VARS.margin, VARS.margin, VARS.margin, VARS.margin)
-    return wibox.container.background(margin, bg_colour)
-
 end
 
-return keyboardLayoutWidgetCreator
+function KeyboardLayoutWidget:return_widget()
+	local margin = Margin:new(self.widget, VARS.margin, self.bg_colour)
+	return margin:return_widget()
+end

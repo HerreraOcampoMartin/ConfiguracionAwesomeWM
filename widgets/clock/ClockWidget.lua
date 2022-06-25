@@ -1,13 +1,27 @@
 local wibox = require("wibox")
 local VARS = require("GetGlobalVars")
 
-local clockWidgetCreator = function(bg_colour)
+ClockWidget = {}
+ClockWidget.__index = ClockWidget
 
-    local widget = wibox.widget.textclock()
+function ClockWidget:new(bg_colour, inst)
+	inst = inst or {}
+	setmetatable(inst, self)
 
-    local margin = wibox.container.margin(widget, VARS.margin, VARS.margin, VARS.margin, VARS.margin)
-    return wibox.container.background(margin, bg_colour)
+	self.bg_colour = bg_colour
 
+	self:create_widget()
+
+	return inst
 end
 
-return clockWidgetCreator
+function ClockWidget:create_widget()
+    self.widget = wibox.widget.textclock(" %a %d %B  %H:%M ")
+	self.widget.font = VARS.font
+end
+
+function ClockWidget:return_widget()
+	local margin = Margin:new(self.widget, VARS.margin, self.bg_colour)
+	return margin:return_widget()
+end
+

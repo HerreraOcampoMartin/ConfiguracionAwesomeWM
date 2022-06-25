@@ -1,64 +1,98 @@
 local awful = require("awful")
 local wibox = require('wibox')
 local beautiful = require("beautiful")
-local gears = require("gears")
 local VARS = require("GetGlobalVars")
 local dpi = beautiful.xresources.apply_dpi
-local naughty = require('naughty') 
+
+function createRightWidget(WidgetType, arrow_col, bg_col)
+    require("widgets.separator.SeparatorWidget")
+
+    local sep = SeparatorWidget:new(arrow_col, bg_col):return_widget()
+    local wid = WidgetType:new(bg_col):return_widget()
+
+    return {sep, wid}
+end
+
+function TableConcat(t1,t2)
+    for i=1,#t2 do
+        t1[#t1+1] = t2[i]
+    end
+    return t1
+end
 
 function widgetFactory(s)
 
-    s.mywibox = awful.wibar({ 
-		position = "top", 
+    s.mywibox = awful.wibar({
+		position = "top",
 		screen = s,
-		type = dock,
+		type = "panel",
 		height = dpi(VARS.mainPanelSize),
 		bg = VARS.mainPanelColour
 	})
 
-	local importar = {"bluetooth.BluetoothWidget","battery.BatteryWidget","keyboardLayout.KeyboardLayoutWidget","clock.ClockWidget","layoutBox.LayoutBoxWidget"}
-	local objetos = {layout = wibox.layout.fixed.horizontal,require("widgets.systray.SystrayWidget")()}
+	--The margin widget is required by all other widgets, so its called before anything else.
+	require("widgets.margin.MarginWidget")
 
-	local long = 0
-	for _ in pairs(importar) do long = long + 1 end
+	--Left widgets
+	require("widgets.menu.MenuWidget")
+	require("widgets.taglist.TaglistWidget")
+	require("widgets.tasklist.TasklistWidget")
 
-	local j = 0
-	for i = 1, long, 1 do
-		table.insert(objetos, require("widgets.separator.SeparatorWidget")(VARS.gradientes[i], VARS.gradientes[i+1]))
-		table.insert(objetos, require("widgets." .. importar[i])(VARS.gradientes[i+1]))
-	end
+	local menu = MenuWidget:new():return_widget()
+	local taglist = TaglistWidget:new(s):return_widget()
+	local tasklist = TasklistWidget:new(s):return_widget()
+
+	-- Right widgets
+	require("widgets.bluetooth.BluetoothWidget")
+	require("widgets.clock.ClockWidget")
+	require("widgets.keyboardLayout.KeyboardLayoutWidget")
+	require("widgets.layoutBox.LayoutBoxWidget")
+	require("widgets.battery.BatteryWidget")
+	require("widgets.systray.SystrayWidget")
+
+	local systray = SystrayWidget:new():return_widget()
+
+    local rightWidgets = {layout = wibox.layout.fixed.horizontal, systray}
+
+	i = 2
+    rightWidgets = TableConcat(rightWidgets, createRightWidget(BluetoothWidget, VARS.gradients[i-1], VARS.gradients[i]))
+
+	i = 3
+    rightWidgets = TableConcat(rightWidgets, createRightWidget(BatteryWidget, VARS.gradients[i-1], VARS.gradients[i]))
+
+	i = 4
+    rightWidgets = TableConcat(rightWidgets, createRightWidget(KeyboardLayoutWidget, VARS.gradients[i-1], VARS.gradients[i]))
+
+	i = 5
+    rightWidgets = TableConcat(rightWidgets, createRightWidget(ClockWidget, VARS.gradients[i-1], VARS.gradients[i]))
+
+	i = 6
+    rightWidgets = TableConcat(rightWidgets, createRightWidget(LayoutBoxWidget, VARS.gradients[i-1], VARS.gradients[i]))
+	
 
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-			require("widgets.menu.MenuWidget")(),
-			require("widgets.taglist.TaglistWidget")(s)
+			menu,
+			taglist
         },
         
-		require("widgets.tasklist.TasklistWidget")(s),
-       
-		objetos
---		{ -- Right widgets
---            layout = wibox.layout.fixed.horizontal,
---            require("widgets.volume.VolumeWidget")(),
---			require("widgets.systray.SystrayWidget")(),
---			require("widgets.separator.SeparatorWidget")("alpha", VARS.gradient5),
---			require("widgets.wifi.WifiWidget")(VARS.gradient6),
-		
+		-- Center widgets
+		tasklist,
 
---			require("widgets.separator.SeparatorWidget")("alpha", VARS.gradient5),
---            require("widgets.bluetooth.BluetoothWidget")(VARS.gradient5),
---			require("widgets.separator.SeparatorWidget")(VARS.gradient5, VARS.gradient4),
---            require("widgets.battery.BatteryWidget")(VARS.gradient4),
---			require("widgets.separator.SeparatorWidget")(VARS.gradient4, VARS.gradient3),
---		    require("widgets.keyboardLayout.KeyboardLayoutWidget")(VARS.gradient3),
---			require("widgets.separator.SeparatorWidget")(VARS.gradient3, VARS.gradient2),
---            require("widgets.clock.ClockWidget")(VARS.gradient2),
---			require("widgets.separator.SeparatorWidget")(VARS.gradient2, VARS.gradient1),
---            require("widgets.layoutBox.LayoutBoxWidget")(VARS.gradient1),
-     --   },
+		-- Right widgets
+		rightWidgets
+
     }
+
+	--Manually free memory
+	menu = nil
+	taglist = nil
+	tasklist = nil
+	systray = nil
+	collectgarbage()
+
 end
 
 return widgetFactory

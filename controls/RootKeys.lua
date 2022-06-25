@@ -20,8 +20,8 @@ globalkeys = gears.table.join(
 
 	awful.key({ VARS.modkey }, "b",		function() awful.util.spawn("blueman-manager") end,
 			  { description = "Launch bluetooth manager", group="client"}),
-    
-	awful.key({ 			}, "XF86AudioPlay", function(c) awful.util.spawn("playerctl play-pause") end,
+
+	awful.key({ 			}, "XF86AudioPlay", function(c) awful.spawn("playerctl play-pause") end,
 	{ description="play/pause media", group="client" }),
 
 	awful.key({				 }, "Print",
@@ -51,7 +51,7 @@ globalkeys = gears.table.join(
     awful.key({ VARS.modkey,           }, "Return", function () awful.spawn(VARS.terminal) end,
               {description = "open a terminal", group = "launcher"}),
 
-    awful.key({ VARS.modkey, "Control" }, "r", awesome.restart,
+    awful.key({ VARS.modkey, "Shift" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
 
     awful.key({ VARS.modkey, "Shift"   }, "q", function() awesome.emit_signal("module::exit_screen:show") end,
@@ -76,7 +76,7 @@ globalkeys = gears.table.join(
               {description = "select previous", group = "layout"}),
 
     -- Prompt
-    awful.key({ VARS.modkey },            "e",     FUNCS.launchMenu,
+    awful.key({ VARS.modkey },            "r",     FUNCS.launchMenu,
               {description = "Run Rofi Menu", group = "launcher"})
 
 )

@@ -1,16 +1,26 @@
 local wibox = require("wibox")
+local beautiful = require("beautiful")
 local VARS = require("GetGlobalVars")
 
-local systrayWidgetCreator = function(bg_colour)
+SystrayWidget = {}
 
-    local widget = wibox.widget.systray({
-		bg_systray = VARS.transparent,
-		systray_icon_spacing = 3
-	})
+function SystrayWidget:new(inst)
+	inst = inst or {}
+	setmetatable(inst, self)
+	self.__index = self
 
---    local margin = wibox.container.margin(widget, VARS.margin, VARS.margin, VARS.margin, VARS.margin)
-    return widget
+	self:create_widget()
 
+	return inst
 end
 
-return systrayWidgetCreator
+function SystrayWidget:create_widget()
+    self.widget = wibox.widget.systray({
+		systray_icon_spacing = 5
+	})
+end
+
+function SystrayWidget:return_widget()
+	local margin = Margin:new(self.widget, VARS.smallMargin)
+	return margin:return_widget()
+end

@@ -3,7 +3,19 @@ local gears = require("gears")
 local awful = require("awful")
 local VARS = require("GetGlobalVars")
 
-local taglistWidgetCreator = function(s)
+TaglistWidget = {}
+
+function TaglistWidget:new(s, inst)
+	inst = inst or {}
+	setmetatable(inst, self)
+	self.__index = self
+
+	self:create_widget(s)
+
+	return inst
+end
+
+function TaglistWidget:create_widget(s)
 
 	local taglist_buttons = gears.table.join(
 		awful.button({ }, 1, function(t) t:view_only() end),
@@ -79,7 +91,7 @@ local taglistWidgetCreator = function(s)
 		screen = s
 	})
 
-    local widget = awful.widget.taglist {
+    self.widget = awful.widget.taglist {
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
         style   = {
@@ -87,14 +99,13 @@ local taglistWidgetCreator = function(s)
 			fg_focus = VARS.primaryFont,
 		    font = VARS.font,
             bg_occupied = VARS.secondaryColour,
-			fg_occupied = VARS.secondaryFont,
-			taglist_squares_unsel = VARS.icons_dir .. 'icons/1.svg'
+			fg_occupied = VARS.secondaryFont
         },
         buttons = taglist_buttons
     }
 
-    return widget
-
 end
 
-return taglistWidgetCreator
+function TaglistWidget:return_widget()
+	return self.widget
+end

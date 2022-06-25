@@ -2,7 +2,6 @@ local awful = require("awful")
 local wibox = require("wibox")
 local gears = require("gears")
 local beautiful = require("beautiful")
-local naughty = require("naughty")
 local VARS = require("GetGlobalVars")
 
 local function createVolumeWidget()

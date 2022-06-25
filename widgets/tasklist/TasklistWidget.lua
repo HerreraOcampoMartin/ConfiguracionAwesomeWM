@@ -3,7 +3,19 @@ local gears = require("gears")
 local awful = require("awful")
 local VARS = require("GetGlobalVars")
 
-local tasklistWidgetCreator = function(s)
+TasklistWidget = {}
+
+function TasklistWidget:new(s, inst)
+	inst = inst or {}
+	setmetatable(inst, self)
+	self.__index = self
+
+	self:create_widget(s)
+
+	return inst
+end
+
+function TasklistWidget:create_widget(s)
 
 	local tasklist_buttons = gears.table.join(
 		awful.button({ }, 1, function (c)
@@ -24,7 +36,7 @@ local tasklistWidgetCreator = function(s)
 		)
 	)
 
-    local widget = awful.widget.tasklist {
+    self.widget = awful.widget.tasklist {
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons,
@@ -39,8 +51,9 @@ local tasklistWidgetCreator = function(s)
 	    },
     }
 
-    return wibox.container.margin(widget, VARS.margin, VARS.margin, 0, 0)
 
 end
 
-return tasklistWidgetCreator
+function TasklistWidget:return_widget()
+    return wibox.container.margin(self.widget, VARS.margin, VARS.margin, 0, 0)
+end

@@ -1,3 +1,4 @@
+CONTROL:
 /sbin/iw
 bluetooth
 hcitool dev
@@ -5,10 +6,17 @@ awk
 amixer
 setxkbmap
 iproute2
-rofi
-inter-font
-nitrogen 
 lxpolkit
-picom
+picom/compton
+playerctl
+brightnessctl
 
+GRÁFICOS:
+blueman-manager
+rofi (git)
+inter-font (?)
+nitrogen 
 redshift ----
+
+OTROS:
+cpu-autofreq
