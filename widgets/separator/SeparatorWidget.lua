@@ -1,7 +1,7 @@
 local wibox = require("wibox")
 local gears = require("gears")
 local VARS = require("GetGlobalVars")
-local separators = { width = VARS.mainPanelSize / 2, height = VARS.mainPanelSize}
+local separators = { width = VARS.mainPanelSize, height = VARS.mainPanelSize}
 
 SeparatorWidget = {}
 

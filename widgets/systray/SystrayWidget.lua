@@ -16,8 +16,9 @@ end
 
 function SystrayWidget:create_widget()
     self.widget = wibox.widget.systray({
-		systray_icon_spacing = 5
+		systray_icon_spacing = VARS.systrayIconsSpacing
 	})
+    self.widget:set_base_size(VARS.systrayIconsSize)
 end
 
 function SystrayWidget:return_widget()

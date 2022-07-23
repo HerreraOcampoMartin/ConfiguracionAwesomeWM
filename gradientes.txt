@@ -7,8 +7,8 @@ VARS.secondaryColour = VARS.gradients[6]
 VARS.focusedBorder = VARS.secondaryColour
 
 -----------NEGRO y CELESTE-------------
-VARS.gradients = {"alpha", "#201D2D", "#282536", "#353144", "#3A364A", "#433F54", "#4B475D", "#565369", "#605C74", "#6E6A83"}
 VARS.primaryColour = "#6b00b3" -- VIOLETA --"#d32912" -- ROJO -- "#457DF7" -- AZUL -- "#b8ba25" -- VERDE
+VARS.gradients = {"alpha", "#201D2D", "#282536", "#353144", "#3A364A", "#433F54", "#4B475D", "#565369", "#605C74", "#6E6A83"}
 VARS.secondaryColour = VARS.gradients[9]
 VARS.focusedBorder = VARS.primaryColour
 
@@ -16,4 +16,16 @@ VARS.focusedBorder = VARS.primaryColour
 VARS.gradients = {"alpha", "#4CB8C4", "#49BCC0", "#47C0BD", "#45C4BA", "#44C6B8", "#42C8B6", "#40CCB3", "#3ECFB0", "#3CD3AD"}
 VARS.primaryColour = "#009670"
 VARS.secondaryColour = VARS.gradients[9]
+VARS.focusedBorder = VARS.primaryColour
+
+-----------MULTICOLOR --------------
+VARS.gradients = {"alpha", "#00cc66", "#ffaa00", "#ee5d65", "#6600cc", "#3333ff", "#333399", "#353c4a", "#0f101a"}
+VARS.primaryColour = VARS.gradients[9]
+VARS.secondaryColour = VARS.gradients[4]
+VARS.focusedBorder = VARS.primaryColour
+
+-----------TRANSPARENTE --------------
+VARS.primaryColour = "#6b00b3" -- VIOLETA --"#d32912" -- ROJO -- "#457DF7" -- AZUL -- "#b8ba25" -- VERDE
+VARS.gradients = {"alpha", "alpha", "alpha", "alpha", "alpha", "alpha", "alpha", "alpha", "alpha", "alpha"}
+VARS.secondaryColour = VARS.primaryColour
 VARS.focusedBorder = VARS.primaryColour

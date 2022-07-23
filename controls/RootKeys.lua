@@ -18,9 +18,6 @@ globalkeys = gears.table.join(
     awful.key({ VARS.modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
 
-	awful.key({ VARS.modkey }, "b",		function() awful.util.spawn("blueman-manager") end,
-			  { description = "Launch bluetooth manager", group="client"}),
-
 	awful.key({ 			}, "XF86AudioPlay", function(c) awful.spawn("playerctl play-pause") end,
 	{ description="play/pause media", group="client" }),
 
@@ -48,7 +45,7 @@ globalkeys = gears.table.join(
               {description = "jump to urgent client", group = "client"}),
 
     -- Standard program
-    awful.key({ VARS.modkey,           }, "Return", function () awful.spawn(VARS.terminal) end,
+    awful.key({ VARS.modkey, "Shift"    }, "Return", function () awful.spawn(VARS.terminal) end,
               {description = "open a terminal", group = "launcher"}),
 
     awful.key({ VARS.modkey, "Shift" }, "r", awesome.restart,
@@ -77,7 +74,31 @@ globalkeys = gears.table.join(
 
     -- Prompt
     awful.key({ VARS.modkey },            "r",     FUNCS.launchMenu,
-              {description = "Run Rofi Menu", group = "launcher"})
+              {description = "Run Rofi Menu", group = "launcher"}),
+
+    -- Combinación de teclas
+    awful.key( {VARS.modkey}, "e", function()
+      local grabber
+      grabber =
+        awful.keygrabber.run(
+          function(_, key, event)
+            if event == "release" then return end
+
+            if     key == "e" then awful.spawn.with_shell("emacsclient -c -a 'emacs'")
+            elseif key == "b" then awful.spawn.with_shell("blueman-manager")
+            elseif key == "n" then awful.spawn.with_shell("brave-browser")
+            elseif key == "f" then awful.spawn.with_shell("thunar")
+            elseif key == "s" then awful.spawn.with_shell("spotify")
+            elseif key == "r" then awful.spawn.with_shell("flatpak run com.rtosta.zapzap")
+            elseif key == "o" then awful.spawn.with_shell("onlyoffice-desktopeditors")
+            end
+            awful.keygrabber.stop(grabber)
+            end
+          )
+        end,
+        {description = "followed by KEY", group = "Ejecutar"}
+        )
+
 
 )
 
