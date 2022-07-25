@@ -88,8 +88,8 @@ globalkeys = gears.table.join(
             elseif key == "b" then awful.spawn.with_shell("blueman-manager")
             elseif key == "n" then awful.spawn.with_shell("brave-browser")
             elseif key == "f" then awful.spawn.with_shell("thunar")
-            elseif key == "s" then awful.spawn.with_shell("spotify")
-            elseif key == "r" then awful.spawn.with_shell("flatpak run com.rtosta.zapzap")
+            elseif key == "s" then awful.spawn.with_shell("com.spotify.Client")
+            elseif key == "w" then awful.spawn.with_shell("flatpak run com.rtosta.zapzap")
             elseif key == "o" then awful.spawn.with_shell("onlyoffice-desktopeditors")
             end
             awful.keygrabber.stop(grabber)
