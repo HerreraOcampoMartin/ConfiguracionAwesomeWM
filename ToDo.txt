@@ -5,7 +5,7 @@ PASAR TODO A "POO"
 Mejor manejo de la librería beautiful y usar "theme"
 Mover algunos programas y funciones de GetGlobalVars a GetFunctions
 Temas de color aleatorios
-Autoejecutar configuraciones al iniciar (por ejemplo, brillo)
+Autoejecutar configuraciones al iniciar (por ejemplo, brillo con sudo)
 Barras de título
 Barra de título para todas las ventanas
 Systray Transparente
@@ -17,7 +17,6 @@ Añadir luz nocturna
 Abrir aplicación por defecto en etiqueta
 Arreglar Meta+Tab no cambia a ventanas raras (flotantes?, pantalla completa?)
 Arreglar redimensionar ventanas (con teclas)
-Cambiar de posicion ventana en el layout actual (mover ventana a la derecha, izquierda, etc)
 Panel de notificaciones
 Cuando pasa de Pantalla completa a flotante, solo sale de pantalla completa, no se vuelve flotante
 Efectos para botones (hover, salir, click)

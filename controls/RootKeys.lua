@@ -44,6 +44,17 @@ globalkeys = gears.table.join(
     awful.key({ VARS.modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
 
+    -- Resize window
+
+    awful.key({ VARS.modkey    }, "l",     function () awful.tag.incmwfact( 0.05)    end),
+    awful.key({ VARS.modkey    }, "h",     function () awful.tag.incmwfact(-0.05)    end),
+    awful.key({ VARS.modkey, "Shift"    }, "j",     function () awful.client.incwfact( 0.01)    end),
+    awful.key({ VARS.modkey, "Shift"    }, "k",     function () awful.client.incwfact(-0.01)    end),
+    awful.key({ VARS.modkey, "Control"   }, "j",   function (c) c:relative_move(  0,  20,   0,   0) end),
+    awful.key({ VARS.modkey, "Control"   }, "k",     function (c) c:relative_move(  0, -20,   0,   0) end),
+    awful.key({ VARS.modkey, "Control"   }, "h",   function (c) c:relative_move(-20,   0,   0,   0) end),
+    awful.key({ VARS.modkey, "Control"   }, "l",  function (c) c:relative_move( 20,   0,   0,   0) end),
+
     -- Standard program
     awful.key({ VARS.modkey, "Shift"    }, "Return", function () awful.spawn(VARS.terminal) end,
               {description = "open a terminal", group = "launcher"}),
@@ -86,7 +97,7 @@ globalkeys = gears.table.join(
 
             if     key == "e" then awful.spawn.with_shell("emacsclient -c -a 'emacs'")
             elseif key == "b" then awful.spawn.with_shell("blueman-manager")
-            elseif key == "n" then awful.spawn.with_shell("brave-browser")
+            elseif key == "n" then awful.spawn.with_shell("firefox")
             elseif key == "f" then awful.spawn.with_shell("thunar")
             elseif key == "s" then awful.spawn.with_shell("com.spotify.Client")
             elseif key == "w" then awful.spawn.with_shell("flatpak run com.rtosta.zapzap")

@@ -2,4 +2,3 @@ Cambiar brillo teclado por archivo:					echo 1 > /sys/class/leds/asus::kbd_backl
 Cambiar brillo teclado por brightnessctl:			sudo brightnessctl --device='asus::kbd_backlight' set 1
 Cambiar brillo de pantalla por brightnessctl:		sudo brightnessctl set 100%
 
-Leer FAQ, hay cosas interesantes
