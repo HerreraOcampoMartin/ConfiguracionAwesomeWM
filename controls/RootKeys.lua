@@ -51,7 +51,7 @@ globalkeys = gears.table.join(
     awful.key({ VARS.modkey, "Shift"    }, "j",     function () awful.client.incwfact( 0.01)    end),
     awful.key({ VARS.modkey, "Shift"    }, "k",     function () awful.client.incwfact(-0.01)    end),
     awful.key({ VARS.modkey, "Control"   }, "j",   function (c) c:relative_move(  0,  20,   0,   0) end),
-    awful.key({ VARS.modkey, "Control"   }, "k",     function (c) c:relative_move(  0, -20,   0,   0) end),
+
     awful.key({ VARS.modkey, "Control"   }, "h",   function (c) c:relative_move(-20,   0,   0,   0) end),
     awful.key({ VARS.modkey, "Control"   }, "l",  function (c) c:relative_move( 20,   0,   0,   0) end),
 
@@ -62,7 +62,7 @@ globalkeys = gears.table.join(
     awful.key({ VARS.modkey, "Shift" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
 
-    awful.key({ VARS.modkey, "Shift"   }, "q", function() awesome.emit_signal("module::exit_screen:show") end,
+    awful.key({ VARS.modkey, "Shift"   }, "s", function() awesome.emit_signal("module::exit_screen:show") end,
               {description = "quit awesome", group = "awesome"}),
 
     awful.key({ VARS.modkey, "Shift" }, "n",
@@ -88,7 +88,7 @@ globalkeys = gears.table.join(
               {description = "Run Rofi Menu", group = "launcher"}),
 
     -- Combinación de teclas
-    awful.key( {VARS.modkey}, "e", function()
+    awful.key( {VARS.modkey}, "l", function()
       local grabber
       grabber =
         awful.keygrabber.run(
@@ -98,8 +98,8 @@ globalkeys = gears.table.join(
             if     key == "e" then awful.spawn.with_shell("emacsclient -c -a 'emacs'")
             elseif key == "b" then awful.spawn.with_shell("blueman-manager")
             elseif key == "n" then awful.spawn.with_shell("firefox")
-            elseif key == "f" then awful.spawn.with_shell("thunar")
-            elseif key == "s" then awful.spawn.with_shell("com.spotify.Client")
+            elseif key == "f" then awful.spawn.with_shell("nemo")
+            elseif key == "s" then awful.spawn.with_shell("flatpak run com.spotify.Client")
             elseif key == "w" then awful.spawn.with_shell("flatpak run com.rtosta.zapzap")
             elseif key == "o" then awful.spawn.with_shell("onlyoffice-desktopeditors")
             end
@@ -117,9 +117,23 @@ globalkeys = gears.table.join(
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
+
+    J = "#" .. i + 9
+    if i == 5 then
+        J = "q"
+    elseif i == 6 then
+        J = "z"
+    elseif i == 7 then
+        J = "x"
+    elseif i == 8 then
+        J = "c"
+    elseif i == 9 then
+        J = "e"
+    end
+
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
-        awful.key({ VARS.modkey }, "#" .. i + 9,
+        awful.key({ VARS.modkey }, J,
                   function ()
                         local screen = awful.screen.focused()
                         local tag = screen.tags[i]
@@ -129,7 +143,7 @@ for i = 1, 9 do
                   end,
                   {description = "view tag #"..i, group = "tag"}),
         -- Toggle tag display.
-        awful.key({ VARS.modkey, "Control" }, "#" .. i + 9,
+        awful.key({ VARS.modkey, "Control" }, J,
                   function ()
                       local screen = awful.screen.focused()
                       local tag = screen.tags[i]
@@ -139,7 +153,7 @@ for i = 1, 9 do
                   end,
                   {description = "toggle tag #" .. i, group = "tag"}),
         -- Move client to tag.
-        awful.key({ VARS.modkey, "Shift" }, "#" .. i + 9,
+        awful.key({ VARS.modkey, "Shift" }, J,
                   function ()
                       if client.focus then
                           local tag = client.focus.screen.tags[i]
@@ -150,7 +164,7 @@ for i = 1, 9 do
                   end,
                   {description = "move focused client to tag #"..i, group = "tag"}),
         -- Toggle tag on focused client.
-        awful.key({ VARS.modkey, "Control", "Shift" }, "#" .. i + 9,
+        awful.key({ VARS.modkey, "Control", "Shift" }, j,
                   function ()
                       if client.focus then
                           local tag = client.focus.screen.tags[i]

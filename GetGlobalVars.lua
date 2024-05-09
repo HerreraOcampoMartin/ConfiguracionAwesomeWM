@@ -7,7 +7,7 @@ VARS.file_manager = "thunar"
 VARS.editor = "neovide"
 VARS.bluetoothManager = "blueman-manager"
 VARS.networkManager = "kitty -e nmtui"
-VARS.menu = "rofi -show drun"
+VARS.menu = "rofi -show drun -show-icons"
 VARS.screenshot = "flameshot gui"
 
 --CONTROLS
@@ -20,10 +20,10 @@ VARS.languages = {"es", "us"}
 VARS.icons_dir = os.getenv("HOME") .. "/.config/awesome/res/"
 
 --COLOURS
-VARS.primaryColour = "#6b00b3" -- VIOLETA --"#d32912" -- ROJO -- "#457DF7" -- AZUL -- "#b8ba25" -- VERDE
-VARS.gradients = {"alpha", "#201D2D", "#282536", "#353144", "#3A364A", "#433F54", "#4B475D", "#565369", "#605C74", "#6E6A83"}
-VARS.secondaryColour = VARS.gradients[9]
-VARS.focusedBorder = VARS.primaryColour
+VARS.gradients = {"alpha", "#8601F2", "#8A17AC", "#8B228A", "#AF2E74", "#C3346A", "#DE5048", "#EC5F35", "#F0A230", "#F0D430"}
+VARS.primaryColour = VARS.gradients[3]
+VARS.secondaryColour = VARS.gradients[6]
+VARS.focusedBorder = VARS.secondaryColour
 
 --SIZES
 VARS.titlebarSize = 20
@@ -43,9 +43,10 @@ VARS.transparent = "#00000000"
 VARS.primaryFont = "#ebdbb2"
 VARS.secondaryFont = "#ebdbb2"
 VARS.fontName = "FiraCode Nerd Font Mono "
-VARS.smallFont = VARS.fontName .. "10"
-VARS.font = VARS.fontName .. "10"
-VARS.biggerFont = VARS.fontName .. "16"
+VARS.fontSize = 10
+VARS.smallFont = VARS.fontName .. VARS.fontSize
+VARS.font = VARS.fontName .. VARS.fontSize
+VARS.biggerFont = VARS.fontName .. "14"
 VARS.giantFont = VARS.fontName .. "38"
 VARS.unfocusedBorder = VARS.transparent
 VARS.borderWidth = 0
